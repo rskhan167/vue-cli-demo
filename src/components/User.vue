@@ -6,10 +6,16 @@
         <hr>
         <div class="row">
             <div class="userDetail">
-                <app-user-detail :myName="name" @nameWasReset="name = $event"></app-user-detail>
+                <app-user-detail 
+                    :myName="name" 
+                    @nameWasReset="name = $event"
+                    :resetFn="resetName"
+                    :userAge="age"></app-user-detail>
             </div>
             <div class="userEdit">
-                <app-user-edit></app-user-edit>
+                <app-user-edit 
+                    :userAge="age"
+                    @ageWasEdited="age = $event"></app-user-edit>
             </div>
         </div>
     </div>
@@ -22,7 +28,8 @@
     export default {
         data: function(){
             return {
-                name: 'Max'
+                name: 'Max',
+                age: 27
             };
         },
         components: {
@@ -32,6 +39,9 @@
         methods: {
             changeName(){
                 this.name = 'Anna';
+            },
+            resetName() {
+                this.name = 'Max';
             }
         }
     }
